@@ -1,0 +1,8 @@
+# github_id is the identity; login is display only and can change under us.
+meagan:
+  github_id: 1234567
+  login: meaganewaller
+
+visitor:
+  github_id: 7654321
+  login: someone-else

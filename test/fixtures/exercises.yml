@@ -1,0 +1,44 @@
+# Three publication states, because "hidden" has two shapes: never published
+# (null) and not published yet (future).
+rename_a_method:
+  slug: rename-a-method
+  title: Rename a method by hand
+  summary: Rename a method and its callers without a single agent keystroke.
+  body_md: |
+    Open the file. Rename `fetch` to `fetch_and_cache`. Find every caller
+    yourself, including the ones in tests.
+  difficulty: easy
+  topic: refactoring
+  minutes: 20
+  published_at: <%= 1.week.ago %>
+
+read_a_stack_trace:
+  slug: read-a-stack-trace
+  title: Read a stack trace to the actual cause
+  summary: Walk a trace to the frame that matters instead of pasting it anywhere.
+  body_md: |
+    Run the failing test. Read the trace top to bottom and write down which
+    frame is yours before you change anything.
+  difficulty: medium
+  topic: debugging
+  minutes: 30
+  published_at: <%= 2.days.ago %>
+
+scheduled_for_next_week:
+  slug: scheduled-for-next-week
+  title: Scheduled, not yet visible
+  summary: Exists in the database but must stay out of the library until Tuesday.
+  body_md: Placeholder body for the scheduled-publishing tests.
+  difficulty: hard
+  topic: concurrency
+  minutes: 45
+  published_at: <%= 1.week.from_now %>
+
+never_published:
+  slug: never-published
+  title: Draft with no publication date
+  summary: A draft that has never been given a published_at.
+  body_md: Placeholder body for the draft tests.
+  difficulty: easy
+  topic: testing
+  minutes: 15

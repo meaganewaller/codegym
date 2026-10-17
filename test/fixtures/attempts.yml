@@ -1,0 +1,15 @@
+solved_quickly:
+  user: meagan
+  exercise: rename_a_method
+  outcome: solved
+  minutes: 18
+  plan: Grep for callers, change them one at a time, run the tests last.
+  learned: Grep found a caller in a fixture I would have missed.
+
+got_stuck:
+  user: meagan
+  exercise: read_a_stack_trace
+  outcome: stuck
+  minutes: 30
+  plan: Read the trace before touching anything.
+  stuck_on: Could not tell which frame was mine versus the framework's.
