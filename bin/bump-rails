@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+#
+# bin/bump-rails: move the pinned Rails SHA forward on purpose.
+# See docs/decisions/0001-run-on-rails-main.md (rule 1).
+#
+# What it does:
+#   1. Refuses to run on a dirty working tree, so the bump is its own commit.
+#   2. Updates only Rails (bundle update rails --conservative).
+#   3. Prints the GitHub compare link for the old and new SHA. Read it first.
+#   4. Runs bin/ci. If that fails, nothing is committed and the change is left
+#      in your working tree for you to fix.
+#   5. If CI passes, commits Gemfile.lock with both SHAs in the message.
+#
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+# Prints the revision of the rails/rails git source in Gemfile.lock.
+rails_sha() {
+  awk '
+    /^GIT$/        { inblock = 1; remote = ""; next }
+    /^$/           { inblock = 0 }
+    inblock && /^  remote:/   { remote = $2 }
+    inblock && /^  revision:/ { if (remote ~ /rails\/rails(\.git)?$/) { print $2; exit } }
+  ' Gemfile.lock
+}
+
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "Working tree is not clean. Commit or stash first so the bump is its own commit." >&2
+  exit 1
+fi
+
+old="$(rails_sha)"
+if [[ -z "$old" ]]; then
+  echo "No rails/rails git revision found in Gemfile.lock." >&2
+  echo "Is the Gemfile pointing at github: \"rails/rails\", branch: \"main\"?" >&2
+  exit 1
+fi
+echo "Pinned now: ${old:0:10}"
+
+bundle update rails --conservative
+
+new="$(rails_sha)"
+if [[ "$old" == "$new" ]]; then
+  echo "Already on the latest main (${new:0:10}). Nothing to do."
+  exit 0
+fi
+
+compare="https://github.com/rails/rails/compare/${old}...${new}"
+echo
+echo "Moving ${old:0:10} -> ${new:0:10}"
+echo "Read the diff: $compare"
+echo
+echo "Running bin/ci ..."
+if ! bin/ci; then
+  echo >&2
+  echo "bin/ci failed on ${new:0:10}. Nothing was committed." >&2
+  echo "Fix it, or undo with:  git checkout Gemfile.lock && bundle install" >&2
+  echo "Either way, add a row to the bump log in docs/decisions/0001-run-on-rails-main.md." >&2
+  exit 1
+fi
+
+git add Gemfile.lock
+git commit -m "Bump Rails main: ${old:0:10} -> ${new:0:10}" -m "$compare"
+
+echo
+echo "Committed. Now add a row to the bump log in docs/decisions/0001-run-on-rails-main.md:"
+echo "  from ${old:0:10} to ${new:0:10}, what changed for us, and the lesson."
+echo "If the release notes or app:update mention config changes, run bin/rails app:update and review the diff."
