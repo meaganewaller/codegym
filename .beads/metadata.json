@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "codegym",
+  "project_id": "5a868ccd-cc65-4892-90c1-c884702c63a0"
+}
