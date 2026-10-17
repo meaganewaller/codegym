@@ -40,3 +40,8 @@
 .beads-credential-key
 .beads/proxieddb/
 *.gate.lock*
+
+# Derived from the database and conflict-prone; see dotfiles docs/beads.md.
+.beads/interactions.jsonl
+# Generated per-project; hooks come from init.templateDir instead.
+.beads/hooks/
