@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(bin/setup)",
+      "Bash(bin/ci)",
+      "Bash(bin/rubocop *)",
+      "Bash(bin/brakeman *)",
+      "Bash(bin/rails test *)",
+      "Bash(bin/rails routes *)",
+      "Bash(bin/rails generate *)",
+      "Bash(bin/rails db:migrate)",
+      "Bash(bin/rails db:migrate:status)",
+      "Bash(bin/rails db:prepare)",
+      "Bash(bin/rails db:seed)",
+      "Bash(bundle info *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)"
+    ],
+    "ask": [
+      "Bash(bin/bump-rails)",
+      "Bash(bin/kamal *)",
+      "Bash(bin/rails db:drop *)",
+      "Bash(bin/rails db:reset *)",
+      "Bash(bin/rails db:schema:load *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./config/master.key)",
+      "Read(./config/credentials/*.key)",
+      "Read(./storage/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(rm -rf *)"
+    ]
+  }
+}
