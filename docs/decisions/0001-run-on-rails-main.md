@@ -22,7 +22,7 @@ Track `rails/rails` `main` from the first commit.
 
 ## Rules
  
-1. **Bump weekly, as its own commit.** Update Rails only, run `bin/ci`, fix what broke, and commit with the old and new SHA in the message. Planned as `bin/bump-rails`.
+1. **Bump weekly, as its own commit.** Update Rails only, run `bin/ci`, fix what broke, and commit with the old and new SHA in the message. Use `bin/bump-rails`.
 2. **Read before bumping.** Skim the latest *This Week in Rails* and the diff between the two SHAs. Write down anything that changed how we would write code.
 3. **Keep the basics boring.** The library, exercise pages, and attempt log are plain Rails. Main-only features are reserved for the parts of the app where we are exploring anyway: the coach, background jobs, and telemetry.
 4. **Every framework change that bites goes in the bump log.** Date, SHA range, what broke, and what we learned.
