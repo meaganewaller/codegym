@@ -54,4 +54,4 @@ Switching is a Gemfile change plus `bin/rails app:update`. Record the switch as 
  
 | Date | From SHA | To SHA | What changed for us | Lesson |
 | --- | --- | --- | --- | --- |
-| 2026-10-17 | n/a | `<baseline sha>` | Baseline. App boots, `bin/ci` green. | |
+| 2026-10-17 | n/a | `ba3572c874` | Baseline. App boots, `bin/ci` green. | |
