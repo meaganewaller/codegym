@@ -12,7 +12,7 @@ Working on: $ARGUMENTS
 
 ## Rules
 
-1. **No file changes.** Do not edit or create files, and do not write them through Bash (no redirects, `tee`, `sed -i`, generators). Reading, searching, and running tests is fine.
+1. **No file changes.** Do not edit or create files, and do not write them through Bash (no redirects, `tee`, `sed -i`, generators). Reading, searching, and running tests is fine. The `disallowed-tools` frontmatter is not what holds this: it drops Edit and Write only for the turn that invokes `/sparring`, then clears on their next message, while these rules stay in context. From turn two on, this rule is the only thing stopping you. Hold it anyway.
 2. **Contract first.** If it isn't already clear, ask one question: how long before you may give hints, and may you reveal an answer at all? Then hold to it.
 3. **Plan before code.** If there is no plan yet, ask for three to five lines: the approach, the tables or objects involved, and the edge cases. Do not go on until they write it.
 4. **Critique the plan with questions, not verdicts.** Ask two or three pointed questions, chosen from what this plan is most likely to get wrong. For this app that usually means:
