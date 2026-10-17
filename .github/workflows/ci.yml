@@ -23,11 +23,14 @@ jobs:
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
-      
+        # Flags match config/ci.rb. --exit-on-warn and --exit-on-error are Brakeman
+        # defaults as of 8.1, so this is parity plus pinning the fail-on-findings
+        # behavior explicitly rather than inheriting it from a default.
+        run: bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error
+
       - name: Scan for known security vulnerabilities in gems used
         run: bin/bundler-audit
-      
+
   scan_js:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -96,6 +99,12 @@ jobs:
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
+
+      - name: Replant seeds
+        # Mirrors the "Tests: Seeds" step in config/ci.rb.
+        env:
+          RAILS_ENV: test
+        run: bin/rails db:seed:replant
 
   system-test:
     runs-on: ubuntu-latest
