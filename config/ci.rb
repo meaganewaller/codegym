@@ -12,8 +12,13 @@ CI.run do
     group "Tests" do
       step "Tests: Rails", "bin/rails test"
       step "Tests: Seeds", "env RAILS_ENV=test bin/rails db:seed:replant"
-      # Optional: Run system tests
-      # step "Tests: System", "bin/rails test:system"
+
+      # On, and worth the roughly 25 seconds it costs. The timer and the
+      # library's frame navigation are only observable in a browser, and a
+      # "Content missing" bug reached the owner precisely because bin/ci could
+      # not see a click. A gate that skips the only coverage of a feature is
+      # not a gate. Needs Chrome; the GitHub workflow runs the same step.
+      step "Tests: System", "bin/rails test:system"
     end
   end
 
