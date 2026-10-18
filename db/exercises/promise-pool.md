@@ -5,7 +5,7 @@ summary: Keep exactly N jobs in flight over a long list, and get the results bac
 difficulty: medium
 topic: async
 minutes: 30
-published_at: 2026-12-08 09:00:00
+published_at: 2026-09-13 09:00:00
 ---
 
 ## The problem

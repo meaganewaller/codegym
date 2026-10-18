@@ -5,7 +5,7 @@ summary: Collapse a list of ranges into the smallest set that covers the same gr
 difficulty: easy
 topic: algorithms
 minutes: 30
-published_at: 2026-10-20 09:00:00
+published_at: 2026-07-26 09:00:00
 ---
 
 ## The problem

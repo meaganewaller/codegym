@@ -5,7 +5,7 @@ summary: Work out a safe order to run jobs that depend on each other, and refuse
 difficulty: hard
 topic: systems
 minutes: 45
-published_at: 2026-12-29 09:00:00
+published_at: 2026-10-04 09:00:00
 ---
 
 ## The problem

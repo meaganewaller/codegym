@@ -5,7 +5,7 @@ summary: Store a dictionary so that every completion of a prefix can be found wi
 difficulty: medium
 topic: data-structures
 minutes: 30
-published_at: 2026-11-17 09:00:00
+published_at: 2026-08-23 09:00:00
 ---
 
 ## The problem

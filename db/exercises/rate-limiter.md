@@ -5,7 +5,7 @@ summary: Allow at most N actions per window per user, and decide what a window e
 difficulty: medium
 topic: systems
 minutes: 30
-published_at: 2026-11-24 09:00:00
+published_at: 2026-08-30 09:00:00
 ---
 
 ## The problem

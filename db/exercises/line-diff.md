@@ -5,7 +5,7 @@ summary: Produce the edits that turn one list of lines into another, and the sho
 difficulty: hard
 topic: algorithms
 minutes: 45
-published_at: 2026-12-15 09:00:00
+published_at: 2026-09-20 09:00:00
 ---
 
 ## The problem

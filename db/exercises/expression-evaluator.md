@@ -5,7 +5,7 @@ summary: Parse and evaluate infix arithmetic with precedence, parentheses and un
 difficulty: hard
 topic: parsing
 minutes: 45
-published_at: 2026-12-22 09:00:00
+published_at: 2026-09-27 09:00:00
 ---
 
 ## The problem

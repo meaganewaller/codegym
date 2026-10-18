@@ -5,7 +5,7 @@ summary: Survive being killed mid-write, by deciding what "committed" means befo
 difficulty: hard
 topic: systems
 minutes: 45
-published_at: 2027-01-05 09:00:00
+published_at: 2026-10-11 09:00:00
 ---
 
 ## The problem

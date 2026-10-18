@@ -5,7 +5,7 @@ summary: Turn a line of source text into a list of tokens, including the ones ma
 difficulty: medium
 topic: parsing
 minutes: 30
-published_at: 2026-11-10 09:00:00
+published_at: 2026-08-16 09:00:00
 ---
 
 ## The problem

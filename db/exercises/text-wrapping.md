@@ -5,7 +5,7 @@ summary: Break a paragraph into lines that fit a column, deciding what counts as
 difficulty: easy
 topic: algorithms
 minutes: 30
-published_at: 2026-11-03 09:00:00
+published_at: 2026-08-09 09:00:00
 ---
 
 ## The problem

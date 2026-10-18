@@ -5,7 +5,7 @@ summary: A fixed-capacity key-value store that evicts whatever was used longest 
 difficulty: medium
 topic: data-structures
 minutes: 30
-published_at: 2026-10-27 09:00:00
+published_at: 2026-08-02 09:00:00
 ---
 
 ## The problem

@@ -5,7 +5,7 @@ summary: Two ways to make a function called too often behave, and they are not t
 difficulty: medium
 topic: async
 minutes: 30
-published_at: 2026-12-01 09:00:00
+published_at: 2026-09-06 09:00:00
 ---
 
 ## The problem
