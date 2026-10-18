@@ -36,6 +36,10 @@ gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 2.0"
+
+# Render exercise bodies, which are authored as Markdown in db/exercises/.
+# See docs/decisions/0003-markdown-rendering.md.
+gem "commonmarker"
 gem "ruby-vips", "~> 2.3", require: false
 
 group :development, :test do
