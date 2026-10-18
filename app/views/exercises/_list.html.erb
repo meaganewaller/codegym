@@ -7,7 +7,13 @@
     <% exercises.each do |exercise| %>
       <li class="card">
         <h2 class="card__title">
-          <%= link_to exercise.title, exercise_path(exercise) %>
+          <%# turbo_frame: "_top" because this link sits inside the library
+              frame. Without it Turbo loads the exercise page into that frame,
+              finds no matching turbo-frame#library in the response, and renders
+              "Content missing". Leaving the frame is the whole point here: this
+              is a navigation, not a filter. %>
+          <%= link_to exercise.title, exercise_path(exercise),
+                data: { turbo_frame: "_top" } %>
         </h2>
         <p class="card__summary"><%= exercise.summary %></p>
 

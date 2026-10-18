@@ -142,4 +142,28 @@ class ExercisePageTest < ActionDispatch::IntegrationTest
 
     assert_select ".card__title a[href=?]", exercise_path(@exercise), text: @exercise.title
   end
+
+  # Regression: the card link sits inside the library turbo frame. Without
+  # _top, Turbo loads the exercise page into that frame, finds no matching
+  # turbo-frame#library in the response, and renders "Content missing" instead
+  # of the exercise.
+  test "a card link breaks out of the library frame" do
+    get root_path
+
+    assert_select ".card__title a[data-turbo-frame=?]", "_top"
+  end
+
+  # The other side of the same coin: filter links must NOT break out, or
+  # filtering becomes a full page load.
+  test "filter chips stay inside the frame" do
+    get root_path
+
+    assert_select ".filters .chip[data-turbo-frame]", count: 0
+  end
+
+  test "the show page has no library frame, which is why the link needs _top" do
+    get exercise_path(@exercise)
+
+    assert_select "turbo-frame#library", count: 0
+  end
 end
