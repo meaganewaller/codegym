@@ -92,6 +92,33 @@ class SignInTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # --- the sign-in page -----------------------------------------------------
+
+  # POST, not a link: omniauth-rails_csrf_protection checks an authenticity
+  # token on the request phase, and that check is what stops a third-party page
+  # from signing a visitor into an account of its choosing.
+  #
+  # The token itself is not asserted here because config/environments/test.rb
+  # sets allow_forgery_protection = false, so Rails emits no token field in this
+  # environment. Confirmed present in development by rendering the page.
+  test "the sign-in control is a POST form" do
+    get sign_in_path
+
+    assert_response :success
+    assert_select "form[action=?][method=?]", github_auth_path, "post"
+    assert_select "a[href=?]", github_auth_path, count: 0
+  end
+
+  # Regression: Turbo submits forms with fetch, and the response here is a
+  # redirect to github.com, which fetch cannot follow cross-origin. The whole
+  # submission dies on CORS before the user ever reaches GitHub, so the request
+  # phase has to be a real browser navigation.
+  test "the sign-in form opts out of Turbo so the browser navigates" do
+    get sign_in_path
+
+    assert_select "form[action=?][data-turbo=?]", github_auth_path, "false"
+  end
+
   # --- failures -------------------------------------------------------------
 
   test "a denied sign-in is a message, not an error" do

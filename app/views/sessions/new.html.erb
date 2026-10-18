@@ -9,8 +9,13 @@
   </p>
 
   <%# A button, not a link: the request phase is POST so that
-      omniauth-rails_csrf_protection can check the authenticity token. %>
-  <%= button_to "Continue with GitHub", github_auth_path, class: "button" %>
+      omniauth-rails_csrf_protection can check the authenticity token.
+      turbo: false because this submission has to be a real browser navigation.
+      Turbo would submit it with fetch, and the response is a redirect to
+      github.com, which fetch cannot follow cross-origin -- it fails CORS
+      before the user ever sees GitHub. %>
+  <%= button_to "Continue with GitHub", github_auth_path,
+        class: "button", form: { data: { turbo: false } } %>
 
   <p class="signin__back"><%= link_to "Back to the library", root_path %></p>
 </div>
