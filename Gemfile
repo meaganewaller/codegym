@@ -37,6 +37,13 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 2.0"
 
+# Sign in with GitHub. omniauth-rails_csrf_protection makes the request phase
+# POST-only and token-checked; without it OmniAuth's GET request phase is a
+# login-CSRF vector. See docs/decisions/0004-github-sign-in.md.
+gem "omniauth"
+gem "omniauth-github"
+gem "omniauth-rails_csrf_protection"
+
 # Render exercise bodies, which are authored as Markdown in db/exercises/.
 # See docs/decisions/0003-markdown-rendering.md.
 gem "commonmarker"
