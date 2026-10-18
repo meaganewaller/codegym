@@ -1,0 +1,21 @@
+<nav class="filters" aria-label="Filter exercises">
+  <div class="filter-row">
+    <span class="filter-label" id="filter-difficulty">Difficulty</span>
+    <div class="chips" role="group" aria-labelledby="filter-difficulty">
+      <%= filter_chip "All", difficulty: nil, topic: @topic, active: @difficulty.nil? %>
+      <% Exercise::DIFFICULTIES.each do |value| %>
+        <%= filter_chip value, difficulty: value, topic: @topic, active: @difficulty == value %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-label" id="filter-topic">Topic</span>
+    <div class="chips" role="group" aria-labelledby="filter-topic">
+      <%= filter_chip "All", difficulty: @difficulty, topic: nil, active: @topic.nil? %>
+      <% @topics.each do |value| %>
+        <%= filter_chip value, difficulty: @difficulty, topic: value, active: @topic == value %>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -8,3 +8,199 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/*
+ * Baseline styling for the library. Deliberately plain: codegym-6nb is the
+ * layout and design pass, and this only needs to be legible and not embarrassing
+ * until then. Colors are tokens so that pass has one place to start.
+ */
+
+:root {
+  --ink: #1b1b1f;
+  --ink-soft: #5b5b66;
+  --paper: #fcfcfd;
+  --card: #ffffff;
+  --line: #e3e3e9;
+  --accent: #2f5bd7;
+  --easy: #1f7a4d;
+  --medium: #9a6212;
+  --hard: #a3342c;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e9e9ee;
+    --ink-soft: #a1a1ad;
+    --paper: #16161a;
+    --card: #1e1e24;
+    --line: #2f2f38;
+    --accent: #8ca8f5;
+    --easy: #6fd39b;
+    --medium: #e0b35f;
+    --hard: #f08c82;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 2rem 1.25rem 4rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.masthead,
+.filters,
+.library,
+.count,
+.empty {
+  max-width: 54rem;
+  margin-inline: auto;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  margin: 0.25rem 0 0;
+  color: var(--ink-soft);
+}
+
+.sign-in-prompt {
+  margin: 1rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* Filters */
+
+.filters {
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  min-width: 5.5rem;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.chip {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.chip:hover { border-color: var(--accent); }
+
+.chip--on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .chip--on { color: #12121a; }
+}
+
+/* Keep keyboard focus obvious; codegym-s6z wants every page to survive this. */
+.chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Listing */
+
+.count {
+  margin: 1.5rem auto 0.5rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.library {
+  /* margin-inline stays auto so the cards line up with the masthead above;
+     a bare "margin: 0" here would override the shared centering rule. */
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.card__summary {
+  margin: 0.3rem 0 0.7rem;
+  color: var(--ink-soft);
+}
+
+.card__meta {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+
+.tag--easy { color: var(--easy); border-color: currentColor; }
+.tag--medium { color: var(--medium); border-color: currentColor; }
+.tag--hard { color: var(--hard); border-color: currentColor; }
+
+.empty {
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.empty p { margin: 0 0 0.9rem; }

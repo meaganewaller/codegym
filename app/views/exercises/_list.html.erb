@@ -1,0 +1,32 @@
+<% if exercises.any? %>
+  <p class="count" aria-live="polite">
+    <%= pluralize exercises.size, "exercise" %><%= " matching" if filtering? %>
+  </p>
+
+  <ol class="library">
+    <% exercises.each do |exercise| %>
+      <li class="card">
+        <%# Not a link yet: the exercise page is codegym-m7t. %>
+        <h2 class="card__title"><%= exercise.title %></h2>
+        <p class="card__summary"><%= exercise.summary %></p>
+
+        <ul class="card__meta">
+          <li class="tag tag--<%= exercise.difficulty %>"><%= exercise.difficulty %></li>
+          <li class="tag"><%= exercise.topic %></li>
+          <li class="tag"><%= exercise.minutes %> min</li>
+        </ul>
+      </li>
+    <% end %>
+  </ol>
+<% elsif filtering? %>
+  <div class="empty">
+    <p>No exercises match those filters.</p>
+    <%= link_to "Show everything", root_path, class: "chip" %>
+  </div>
+<% else %>
+  <%# Reachable when every exercise is scheduled for a future date, which is the
+      default the /add-exercise skill asks for. %>
+  <div class="empty">
+    <p>No exercises are published yet.</p>
+  </div>
+<% end %>

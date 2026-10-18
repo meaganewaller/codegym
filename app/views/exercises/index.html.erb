@@ -1,0 +1,22 @@
+<% content_for :title, "Exercises" %>
+
+<header class="masthead">
+  <h1>codegym</h1>
+  <p class="tagline">Pick an exercise. Turn the agent off. Start the timer.</p>
+
+  <%# Signed-out is the only state there is until codegym-ir5 adds GitHub
+      sign-in, which is also what turns this into a link and brings back the
+      solved and tried-N-times badges on each card. %>
+  <p class="sign-in-prompt">
+    Signing in will track which exercises you have done and how long they took.
+  </p>
+</header>
+
+<%# turbo_action: "advance" is what makes a filter click push the new URL, so
+    the filter survives a refresh, a bookmark and the back button. The chips
+    live inside the frame so they re-render with the list and can show which one
+    is active. %>
+<%= turbo_frame_tag "library", data: { turbo_action: "advance" } do %>
+  <%= render "filters" %>
+  <%= render "list", exercises: @exercises %>
+<% end %>

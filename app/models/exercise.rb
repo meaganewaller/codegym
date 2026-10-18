@@ -22,6 +22,20 @@ class Exercise < ApplicationRecord
   # page. Scheduled publishing depends on this, so nothing should bypass it.
   scope :published, -> { where(published_at: ..Time.current) }
 
+  scope :newest_first, -> { order(published_at: :desc) }
+
+  # An unknown value matches nothing rather than raising, so a hand-edited query
+  # string shows the empty state instead of a 500. Blank means "no filter",
+  # which is what an absent param and the "All" chip both produce.
+  scope :with_difficulty, ->(value) { value.present? ? where(difficulty: value) : all }
+  scope :with_topic, ->(value) { value.present? ? where(topic: value) : all }
+
+  # Topics are free text rather than an enum, so the filter's options come from
+  # what has actually been authored.
+  def self.topics
+    distinct.order(:topic).pluck(:topic)
+  end
+
   def published?
     published_at.present? && published_at <= Time.current
   end
