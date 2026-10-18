@@ -12,4 +12,12 @@ class ExercisesController < ApplicationController
     # that exists only on a scheduled exercise is not advertised early.
     @topics = Exercise.published.topics
   end
+
+  def show
+    # Scoped to published, so an exercise scheduled for a future date 404s
+    # instead of being readable early by anyone who guesses the slug. Raising
+    # RecordNotFound is what makes it a 404 rather than a redirect, which
+    # codegym-wwd asks for: a redirect would confirm the slug exists.
+    @exercise = Exercise.published.find_by!(slug: params[:slug])
+  end
 end

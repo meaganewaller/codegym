@@ -36,6 +36,13 @@ class Exercise < ApplicationRecord
     distinct.order(:topic).pluck(:topic)
   end
 
+  # Routes address an exercise by slug (param: :slug), so path helpers have to
+  # hand back the slug rather than the id or exercise_path(exercise) would build
+  # a URL that the slug lookup cannot find.
+  def to_param
+    slug
+  end
+
   def published?
     published_at.present? && published_at <= Time.current
   end

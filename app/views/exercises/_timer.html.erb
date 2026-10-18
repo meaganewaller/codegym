@@ -1,0 +1,29 @@
+<%# Phase boundaries are computed in the controller from minutes: the first
+    sixth is plan, the middle two thirds build, the last sixth reflect. %>
+<section class="timer"
+         data-controller="timer"
+         data-timer-slug-value="<%= exercise.slug %>"
+         data-timer-minutes-value="<%= exercise.minutes %>"
+         aria-label="Exercise timer">
+  <div class="timer__readout">
+    <%# No live region on the clock: announcing it would mean a screen reader
+        reading the time every second. It stays readable on demand. %>
+    <p class="timer__clock" data-timer-target="clock">00:00</p>
+    <p class="timer__budget">of <%= exercise.minutes %> min</p>
+  </div>
+
+  <p class="timer__phase" data-timer-target="phase">Plan</p>
+
+  <%# The only live region: it gets text when the phase changes and at no other
+      time, so the announcement is "Build phase", not the clock ticking. %>
+  <p class="visually-hidden" role="status" data-timer-target="announcer"></p>
+
+  <div class="timer__controls">
+    <button type="button" class="chip" data-action="timer#toggle" data-timer-target="toggle">
+      Start
+    </button>
+    <button type="button" class="chip" data-action="timer#reset">
+      Reset
+    </button>
+  </div>
+</section>

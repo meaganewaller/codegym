@@ -1,0 +1,25 @@
+<% content_for :title, @exercise.title %>
+
+<nav class="crumbs">
+  <%= link_to "← All exercises", root_path %>
+</nav>
+
+<%= render "timer", exercise: @exercise %>
+
+<article class="exercise">
+  <header class="exercise__head">
+    <h1><%= @exercise.title %></h1>
+    <p class="exercise__summary"><%= @exercise.summary %></p>
+    <ul class="card__meta">
+      <li class="tag tag--<%= @exercise.difficulty %>"><%= @exercise.difficulty %></li>
+      <li class="tag"><%= @exercise.topic %></li>
+      <li class="tag"><%= @exercise.minutes %> min</li>
+    </ul>
+  </header>
+
+  <%# Trusted content today, rendered through two independent layers anyway.
+      See docs/decisions/0003-markdown-rendering.md. %>
+  <div class="prose">
+    <%= Markdown.render(@exercise.body_md) %>
+  </div>
+</article>

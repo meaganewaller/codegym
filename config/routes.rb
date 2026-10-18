@@ -12,4 +12,8 @@ Rails.application.routes.draw do
 
   # The library is the home page.
   root "exercises#index"
+
+  # Exercises are addressed by slug, never by id: the slug is the stable name an
+  # exercise is authored under and the one a link can be shared with.
+  resources :exercises, only: :show, param: :slug
 end

@@ -6,8 +6,9 @@
   <ol class="library">
     <% exercises.each do |exercise| %>
       <li class="card">
-        <%# Not a link yet: the exercise page is codegym-m7t. %>
-        <h2 class="card__title"><%= exercise.title %></h2>
+        <h2 class="card__title">
+          <%= link_to exercise.title, exercise_path(exercise) %>
+        </h2>
         <p class="card__summary"><%= exercise.summary %></p>
 
         <ul class="card__meta">
