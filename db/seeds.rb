@@ -1,9 +1,5 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Exercises are authored as Markdown under db/exercises/ and are the source of
+# truth; this table is a projection of them. Running this twice changes nothing
+# the second time. See docs/decisions/0002-exercises-as-files.md.
+result = ExerciseLoader.load_all
+puts "Loaded #{result}."
