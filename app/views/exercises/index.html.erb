@@ -4,12 +4,12 @@
   <h1>codegym</h1>
   <p class="tagline">Pick an exercise. Turn the agent off. Start the timer.</p>
 
-  <%# Signed-out is the only state there is until codegym-ir5 adds GitHub
-      sign-in, which is also what turns this into a link and brings back the
-      solved and tried-N-times badges on each card. %>
-  <p class="sign-in-prompt">
-    Signing in will track which exercises you have done and how long they took.
-  </p>
+  <% unless signed_in? %>
+    <p class="sign-in-prompt">
+      <%= link_to "Sign in with GitHub", sign_in_path %> to keep track of which
+      exercises you have done and how long they took.
+    </p>
+  <% end %>
 </header>
 
 <%# turbo_action: "advance" is what makes a filter click push the new URL, so

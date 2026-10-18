@@ -4,4 +4,9 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  # Brings signed_in?, current_user and the session helpers. Pages are public
+  # unless they say otherwise: the library is readable by anyone, so a
+  # controller that needs a user opts in with require_sign_in.
+  include Authentication
 end

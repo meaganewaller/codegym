@@ -10,6 +10,18 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   # get "offline" => "rails/pwa#offline", as: :pwa_offline
 
+  # Sign in with GitHub and nothing else.
+  #
+  # The request phase is POST only: omniauth-rails_csrf_protection checks the
+  # authenticity token on it, which is what stops a third-party page from
+  # silently signing a visitor into an account of its choosing. OmniAuth's
+  # middleware intercepts this path before routing, so #passthru never runs.
+  get  "sign-in", to: "sessions#new", as: :sign_in
+  post "auth/github", to: "sessions#passthru", as: :github_auth
+  get  "auth/github/callback", to: "sessions#create"
+  get  "auth/failure", to: "sessions#failure"
+  delete "session", to: "sessions#destroy", as: :session
+
   # The library is the home page.
   root "exercises#index"
 

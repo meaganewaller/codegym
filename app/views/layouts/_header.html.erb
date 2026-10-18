@@ -1,0 +1,17 @@
+<header class="topbar">
+  <%= link_to "codegym", root_path, class: "topbar__brand" %>
+
+  <div class="topbar__account">
+    <% if signed_in? %>
+      <span class="topbar__who">
+        <% if current_user.avatar_url.present? %>
+          <%= image_tag current_user.avatar_url, alt: "", class: "avatar", loading: "lazy" %>
+        <% end %>
+        <%= current_user.display_name %>
+      </span>
+      <%= button_to "Sign out", session_path, method: :delete, class: "chip" %>
+    <% else %>
+      <%= link_to "Sign in", sign_in_path, class: "chip" %>
+    <% end %>
+  </div>
+</header>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_10_17_222824) do
+ActiveRecord::Schema[8.2].define(version: 2026_10_18_184941) do
   create_table "attempts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "exercise_id", null: false
@@ -45,14 +45,26 @@ ActiveRecord::Schema[8.2].define(version: 2026_10_17_222824) do
     t.check_constraint "minutes >= 0 AND minutes <= 600", name: "exercises_minutes_in_range"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_sessions_on_user_id_and_created_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.bigint "github_id", null: false
     t.string "login", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "avatar_url"
     t.index ["github_id"], name: "index_users_on_github_id", unique: true
   end
 
   add_foreign_key "attempts", "exercises"
   add_foreign_key "attempts", "users", on_delete: :cascade
+  add_foreign_key "sessions", "users", on_delete: :cascade
 end

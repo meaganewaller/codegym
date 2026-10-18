@@ -341,3 +341,100 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
+/* Top bar and account */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 54rem;
+  margin: 0 auto 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar__brand {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.topbar__account {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
+.topbar__who {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
+.avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+/* button_to renders a form, which would otherwise add a line break. */
+.topbar__account form { margin: 0; }
+.topbar__account .chip { cursor: pointer; font: inherit; font-size: 0.875rem; }
+
+/* Flash */
+
+.flashes {
+  max-width: 54rem;
+  margin: 0 auto 1rem;
+}
+
+.flash {
+  margin: 0 0 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+.flash--notice { color: var(--easy); }
+.flash--alert { color: var(--hard); }
+
+/* Sign-in page */
+
+.signin {
+  max-width: 32rem;
+  margin: 3rem auto;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-align: center;
+}
+
+.signin h1 { margin: 0 0 0.75rem; font-size: 1.3rem; }
+.signin__why { margin: 0 0 1.5rem; color: var(--ink-soft); }
+.signin form { margin: 0; }
+
+.button {
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.button:hover { filter: brightness(1.08); }
+
+.button:focus-visible,
+.chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.signin__back { margin: 1.25rem 0 0; font-size: 0.875rem; }

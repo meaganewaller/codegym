@@ -1,0 +1,9 @@
+<% if flash.any? %>
+  <div class="flashes">
+    <% flash.each do |kind, message| %>
+      <%# role=status rather than alert: these are the result of something the
+          reader just did, so they should not interrupt. %>
+      <p class="flash flash--<%= kind %>" role="status"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
