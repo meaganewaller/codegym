@@ -438,3 +438,16 @@ body {
 }
 
 .signin__back { margin: 1.25rem 0 0; font-size: 0.875rem; }
+
+/* Attempt status on a library card. Stronger than the metadata tags beside
+   them, because this is the thing a returning reader is scanning for. */
+.tag--solved {
+  color: var(--easy);
+  border-color: currentColor;
+  font-weight: 600;
+}
+
+.tag--tried {
+  color: var(--medium);
+  border-color: currentColor;
+}

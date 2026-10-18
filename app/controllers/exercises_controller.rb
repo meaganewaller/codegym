@@ -11,6 +11,10 @@ class ExercisesController < ApplicationController
     # Offered as filter options rather than every topic in the table, so a topic
     # that exists only on a scheduled exercise is not advertised early.
     @topics = Exercise.published.topics
+
+    # Built once for the page rather than per card. Signed out, this is empty
+    # and no badges render.
+    @attempts = AttemptSummary.for(current_user, @exercises)
   end
 
   def show

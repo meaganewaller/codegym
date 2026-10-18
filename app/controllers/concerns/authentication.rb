@@ -24,7 +24,13 @@ module Authentication
       resume_session.present?
     end
 
+    # Resumes rather than reading Current directly. Current.session is only
+    # populated by resume_session, so a controller that asks for current_user
+    # before anything has called signed_in? would otherwise see nobody -- and
+    # see it silently, as an empty page rather than an error. resume_session
+    # memoises, so asking twice costs one lookup.
     def current_user
+      resume_session
       Current.user
     end
 

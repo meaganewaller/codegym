@@ -21,6 +21,17 @@
           <li class="tag tag--<%= exercise.difficulty %>"><%= exercise.difficulty %></li>
           <li class="tag"><%= exercise.topic %></li>
           <li class="tag"><%= exercise.minutes %> min</li>
+
+          <%# Solved wins over the attempt count: having solved it is the
+              answer to "have I done this", and the number of tries is only
+              interesting while the answer is still no. %>
+          <% if @attempts.solved?(exercise) %>
+            <li class="tag tag--solved">Solved</li>
+          <% elsif @attempts.attempted?(exercise) %>
+            <li class="tag tag--tried">
+              Tried <%= pluralize @attempts.count(exercise), "time" %>
+            </li>
+          <% end %>
         </ul>
       </li>
     <% end %>
